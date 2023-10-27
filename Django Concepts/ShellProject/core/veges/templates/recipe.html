@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block start %}
+
+
+
+
+<div class="container mt-5">
+    
+    
+    <form class="col-6 mx-auto card p-3 shadow-lg"  method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+     {{ form.as_p }}
+        <h3>Recipe Form</h3>
+    <hr>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Recipe Name</label>
+        <input type="text" class="form-control" name="recipe_name" placeholder="Recipe Name">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Recipe Description</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" name="recipe_desc" rows="3"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Recipe Image</label>
+        <input type="file" class="form-control" name="recipe_img" placeholder="Recipe Image">
+      </div>
+<button type="submit" value="Submit" class="btn btn-success">Add Recipe</button>
+</div>
+</form>
+
+<hr class="my-2">
+
+<form>
+<div class="mb-3 container">
+  <label for="exampleFormControlInput1" class="form-label">Search</label>
+  <input type="text" class="form-control" name="search" placeholder="Recipe Name">
+  <button  type="submit" value="Submit" class="btn btn-primary my-2">Search</button>
+</div>
+</form>
+
+
+<h3 class="container my-4">Recipes:-</h3>
+<table style="width:100%" class="container my-5">
+  <tr>
+    <th>S. No.</th>
+    <th>Recipe Name</th> 
+    <th>Recipe Description</th>
+    <th>Recipe Image</th>
+    <th>Actions</th>
+  </tr>
+  {% for rec in recipe_data %}
+  <tr>
+    <td>{{forloop.counter}}</td>
+    <td>{{rec.recipe_name}}</td>
+    <td>{{rec.recipe_desc}}</td>
+    <td>{{rec.recipe_img}}</td>
+    <td>
+      <a href="/delete_recipe/{{rec.id}}" class="btn btn-danger">Delete</a>
+    </td>
+    <td>
+      <a href="/update_recipe/{{rec.id}}" class="btn btn-success">Update</a>
+    </td>
+  </tr>
+
+  {% endfor %}
+ 
+</table>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block start %}
+
+
+
+
+<div class="container mt-5">
+    
+    
+    <form class="col-6 mx-auto card p-3 shadow-lg"  method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+     {{ form.as_p }}
+     <h3>Login</h3>
+    
+     <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Username</label>
+        <input type="text" class="form-control" name="username" >
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Password</label>
+        <input type="password"  name="password" class="form-control" id="exampleFormControlInput1" placeholder="password">
+      </div>
+      <p>Don't have an account ? Register first <a href="/register/">Register</a></p> 
+      <button class="btn btn-success">Login</button>
+
+</form>
+
+
+
+
+
+{% endblock %}
